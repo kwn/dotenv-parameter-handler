@@ -8,6 +8,6 @@ class ScriptHandler
 {
     public static function buildParameters(Event $event)
     {
-        $io = $event->getIO();
+        //$io = $event->getIO();
     }
 }
