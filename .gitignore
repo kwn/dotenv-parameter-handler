@@ -2,3 +2,5 @@
 /build/
 composer.lock
 composer.phar
+.env.dist
+.env
