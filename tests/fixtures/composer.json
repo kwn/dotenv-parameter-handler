@@ -28,5 +28,20 @@
         "psr-4": {
             "DotEnvParameterHandler\\": "tests/unit"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "DotEnvParameterHandler\\ScriptHandler::buildParameters"
+        ],
+        "post-update-cmd": [
+            "DotEnvParameterHandler\\ScriptHandler::buildParameters"
+        ]
+    },
+    "extra": {
+        "dot-env-parameter-handler": {
+            "source": ".env.dist",
+            "target": ".env",
+            "strategy": "copypaste"
+        }
     }
 }
