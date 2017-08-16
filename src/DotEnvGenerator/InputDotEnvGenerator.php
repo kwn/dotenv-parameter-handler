@@ -27,6 +27,17 @@ class InputDotEnvGenerator implements DotEnvGenerator
      */
     public function generate(array $dotEnv)
     {
-        // TODO: Implement generate() method.
+        $content = '';
+
+        foreach ($dotEnv as $key => $default) {
+            $value = $this->io->ask(
+                sprintf('<question>%s</question> (<comment>%s</comment>): ', $key, $default),
+                $default
+            );
+
+            $content .= $key . '=' . $value . PHP_EOL;
+        }
+
+        return $content;
     }
 }

@@ -69,6 +69,14 @@ class Configuration
     /**
      * @return string
      */
+    public function getTargetFilename()
+    {
+        return $this->target;
+    }
+
+    /**
+     * @return string
+     */
     public function getStrategy()
     {
         return $this->strategy;

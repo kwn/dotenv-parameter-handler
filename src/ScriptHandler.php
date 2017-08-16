@@ -18,11 +18,14 @@ class ScriptHandler
     public static function buildParameters(Event $event)
     {
         $extras = $event->getComposer()->getPackage()->getExtra();
+        $io = $event->getIO();
 
         $configuration = new Configuration($extras);
         $parser = new SymfonyDotEnvParser();
-        $generatorFactory = new DotEnvGeneratorFactory($event->getIO());
+        $generatorFactory = new DotEnvGeneratorFactory($io);
         $generator = $generatorFactory->create($configuration->getStrategy());
+
+        $io->write(sprintf('<info>Creating "%s" file...</info>', $configuration->getTargetFilename()));
 
         $data = $parser->parse($configuration->getSource());
         $content = $generator->generate($data);

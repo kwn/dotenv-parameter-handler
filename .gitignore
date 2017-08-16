@@ -1,5 +1,6 @@
 /vendor/
 /build/
+/tests/fixtures/vendor/
 composer.lock
 composer.phar
 .env.dist
