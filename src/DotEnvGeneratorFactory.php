@@ -4,6 +4,7 @@ namespace DotEnvParameterHandler;
 
 use Composer\IO\IOInterface;
 use DotEnvParameterHandler\DotEnvGenerator\CopyPasteDotEnvGenerator;
+use DotEnvParameterHandler\DotEnvGenerator\InputDotEnvGenerator;
 use DotEnvParameterHandler\Exception\InvalidConfigurationException;
 
 class DotEnvGeneratorFactory
@@ -17,7 +18,8 @@ class DotEnvGeneratorFactory
      * @var array
      */
     private $availableStrategies = [
-        Configuration::STRATEGY_COPYPASTE
+        Configuration::STRATEGY_COPYPASTE,
+        Configuration::STRATEGY_INPUT
     ];
 
     /**
@@ -39,6 +41,9 @@ class DotEnvGeneratorFactory
         switch ($strategy) {
             case Configuration::STRATEGY_COPYPASTE:
                 return new CopyPasteDotEnvGenerator();
+                break;
+            case Configuration::STRATEGY_INPUT:
+                return new InputDotEnvGenerator($this->io);
                 break;
             default:
                 throw new InvalidConfigurationException(sprintf(

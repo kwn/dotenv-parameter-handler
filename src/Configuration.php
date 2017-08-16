@@ -9,6 +9,7 @@ class Configuration
     const DEFAULT_STRATEGY = self::STRATEGY_COPYPASTE;
 
     const STRATEGY_COPYPASTE = 'copypaste';
+    const STRATEGY_INPUT = 'input';
 
     /**
      * @var string
