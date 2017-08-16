@@ -2,8 +2,6 @@
 
 namespace DotEnvParameterHandler;
 
-use DotEnvParameterHandler\DotEnvGenerator\CopyPasteDotEnvGenerator;
-use DotEnvParameterHandler\Exception\InvalidConfigurationException;
 use PHPUnit\Framework\TestCase;
 
 class ConfigurationTest extends TestCase
@@ -44,42 +42,21 @@ class ConfigurationTest extends TestCase
         self::assertEquals(getcwd() . DIRECTORY_SEPARATOR . '.env', $configuration->getTarget());
     }
 
-    /**
-     * @dataProvider strategyMappings
-     */
-    public function testItReturnsStrategyClass($strategy, $class)
+    public function testItReturnsStrategy()
     {
         $configuration = new Configuration([
             'dot-env-parameter-handler' => [
-                'strategy' => $strategy
+                'strategy' => 'input'
             ]
         ]);
 
-        self::assertEquals($class, $configuration->getStrategyClass());
-    }
-
-    public function strategyMappings()
-    {
-        return [
-            ['copypaste', CopyPasteDotEnvGenerator::class]
-        ];
+        self::assertEquals('input', $configuration->getStrategy());
     }
 
     public function testItHasDefaultValueForDotEnvStrategy()
     {
         $configuration = new Configuration();
 
-        self::assertEquals(CopyPasteDotEnvGenerator::class, $configuration->getStrategyClass());
-    }
-
-    public function testItThrowsExceptionWhenStrategyDoesNotExist()
-    {
-        $this->expectException(InvalidConfigurationException::class);
-
-        new Configuration([
-            'dot-env-parameter-handler' => [
-                'strategy' => 'nonexistingstrategy'
-            ]
-        ]);
+        self::assertEquals(Configuration::DEFAULT_STRATEGY, $configuration->getStrategy());
     }
 }

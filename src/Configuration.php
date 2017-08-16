@@ -2,12 +2,13 @@
 
 namespace DotEnvParameterHandler;
 
-use DotEnvParameterHandler\DotEnvGenerator\CopyPasteDotEnvGenerator;
 use DotEnvParameterHandler\Exception\InvalidConfigurationException;
 
 class Configuration
 {
-    const DEFAULT_STRATEGY = 'copypaste';
+    const DEFAULT_STRATEGY = self::STRATEGY_COPYPASTE;
+
+    const STRATEGY_COPYPASTE = 'copypaste';
 
     /**
      * @var string
@@ -23,13 +24,6 @@ class Configuration
      * @var string
      */
     private $strategy = self::DEFAULT_STRATEGY;
-
-    /**
-     * @var array
-     */
-    private $strategyMappings = [
-        'copypaste' => CopyPasteDotEnvGenerator::class,
-    ];
 
     /**
      * @param array $extraConfig
@@ -50,14 +44,6 @@ class Configuration
             }
 
             if (isset($dotEnvConfig['strategy'])) {
-                if (!array_key_exists($dotEnvConfig['strategy'], $this->strategyMappings)) {
-                    throw new InvalidConfigurationException(sprintf(
-                        'Strategy "%s" is invalid. Available options: %s',
-                        $dotEnvConfig['strategy'],
-                        implode(', ', array_keys($this->strategyMappings))
-                    ));
-                }
-
                 $this->strategy = $dotEnvConfig['strategy'];
             }
         }
@@ -82,8 +68,8 @@ class Configuration
     /**
      * @return string
      */
-    public function getStrategyClass()
+    public function getStrategy()
     {
-        return $this->strategyMappings[$this->strategy];
+        return $this->strategy;
     }
 }
