@@ -7,9 +7,10 @@
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutTodoAnnotatedTests="true"
+         colors="true"
          verbose="true">
     <testsuite name="Unit tests">
-        <directory suffix="Test.php">tests</directory>
+        <directory>tests/unit</directory>
     </testsuite>
 
     <filter>

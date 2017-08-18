@@ -42,6 +42,17 @@ class ConfigurationTest extends TestCase
         self::assertEquals(getcwd() . DIRECTORY_SEPARATOR . '.env', $configuration->getTarget());
     }
 
+    public function testItReturnsDotEnvTargetFilename()
+    {
+        $configuration = new Configuration([
+            'dot-env-parameter-handler' => [
+                'target' => '.envdest'
+            ]
+        ]);
+
+        self::assertEquals('.envdest', $configuration->getTargetFilename());
+    }
+
     public function testItReturnsStrategy()
     {
         $configuration = new Configuration([

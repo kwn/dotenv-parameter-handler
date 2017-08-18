@@ -9,7 +9,7 @@ phpunit-coverage:
 	vendor/bin/phpunit
 
 phpcs:
-	vendor/bin/phpcs -p --encoding=utf-8 --standard=PSR2 src tests
+	vendor/bin/phpcs -p --encoding=utf-8 --standard=PSR2 src tests/unit
 
 phpcbf:
-	vendor/bin/phpcbf -p --encoding=utf-8 --standard=PSR2 src tests
+	vendor/bin/phpcbf -p --encoding=utf-8 --standard=PSR2 src tests/unit
