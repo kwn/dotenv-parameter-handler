@@ -1,5 +1,5 @@
 {
-    "name": "kwn/dot-env-parameter-handler-test",
+    "name": "kwn/dotenv-parameter-handler-test",
     "description": "Composer.json for testing purposes",
     "license": "MIT",
     "require": {
@@ -8,19 +8,19 @@
     },
     "autoload": {
         "psr-4": {
-            "DotEnvParameterHandler\\": "../../src"
+            "DotenvParameterHandler\\": "../../src"
         }
     },
     "scripts": {
         "post-install-cmd": [
-            "DotEnvParameterHandler\\ScriptHandler::buildParameters"
+            "DotenvParameterHandler\\ScriptHandler::buildParameters"
         ],
         "post-update-cmd": [
-            "DotEnvParameterHandler\\ScriptHandler::buildParameters"
+            "DotenvParameterHandler\\ScriptHandler::buildParameters"
         ]
     },
     "extra": {
-        "dot-env-parameter-handler": {
+        "dotenv-parameter-handler": {
             "source": ".env1.dist",
             "target": ".env",
             "strategy": "input"

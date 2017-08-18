@@ -1,15 +1,15 @@
 <?php
 
-namespace DotEnvParameterHandler\DotEnvGenerator;
+namespace DotenvParameterHandler\DotenvGenerator;
 
 use Composer\IO\IOInterface;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
-class InputDotEnvGeneratorTest extends TestCase
+class InputDotenvGeneratorTest extends TestCase
 {
     /**
-     * @var InputDotEnvGenerator
+     * @var InputDotenvGenerator
      */
     private $dotEnvGenerator;
 
@@ -21,10 +21,10 @@ class InputDotEnvGeneratorTest extends TestCase
     public function setUp()
     {
         $this->io = \Mockery::mock(IOInterface::class);
-        $this->dotEnvGenerator = new InputDotEnvGenerator($this->io);
+        $this->dotEnvGenerator = new InputDotenvGenerator($this->io);
     }
 
-    public function testItGeneratesDotEnvFileContentFromArrayWithDefaultValues()
+    public function testItGeneratesDotenvFileContentFromArrayWithDefaultValues()
     {
         $dotEnvArray = [
             'PARAMETER_1' => 'value1',
@@ -49,7 +49,7 @@ CONTENT;
         self::assertEquals($expectedContent, $this->dotEnvGenerator->generate($dotEnvArray));
     }
 
-    public function testItGeneratesDotEnvFileContentFromArrayWithOverriddenValues()
+    public function testItGeneratesDotenvFileContentFromArrayWithOverriddenValues()
     {
         $dotEnvArray = [
             'PARAMETER_1' => 'value1',

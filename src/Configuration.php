@@ -1,14 +1,14 @@
 <?php
 
-namespace DotEnvParameterHandler;
+namespace DotenvParameterHandler;
 
-use DotEnvParameterHandler\Exception\InvalidConfigurationException;
+use DotenvParameterHandler\Exception\InvalidConfigurationException;
 
 class Configuration
 {
-    const DEFAULT_STRATEGY = self::STRATEGY_COPYPASTE;
+    const DEFAULT_STRATEGY = self::STRATEGY_COPY;
 
-    const STRATEGY_COPYPASTE = 'copypaste';
+    const STRATEGY_COPY  = 'copy';
     const STRATEGY_INPUT = 'input';
 
     /**
@@ -33,8 +33,8 @@ class Configuration
      */
     public function __construct(array $extraConfig = [])
     {
-        if (isset($extraConfig['dot-env-parameter-handler'])) {
-            $dotEnvConfig = $extraConfig['dot-env-parameter-handler'];
+        if (isset($extraConfig['dotenv-parameter-handler'])) {
+            $dotEnvConfig = $extraConfig['dotenv-parameter-handler'];
 
             if (isset($dotEnvConfig['source'])) {
                 $this->source = $dotEnvConfig['source'];

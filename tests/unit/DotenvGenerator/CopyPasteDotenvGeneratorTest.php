@@ -1,22 +1,22 @@
 <?php
 
-namespace DotEnvParameterHandler\DotEnvGenerator;
+namespace DotenvParameterHandler\DotenvGenerator;
 
 use PHPUnit\Framework\TestCase;
 
-class CopyPasteDotEnvGeneratorTest extends TestCase
+class CopyPasteDotenvGeneratorTest extends TestCase
 {
     /**
-     * @var CopyPasteDotEnvGenerator
+     * @var CopyPasteDotenvGenerator
      */
     private $dotEnvGenerator;
 
     public function setUp()
     {
-        $this->dotEnvGenerator = new CopyPasteDotEnvGenerator();
+        $this->dotEnvGenerator = new CopyPasteDotenvGenerator();
     }
 
-    public function testItGeneratesDotEnvFileContentFromArray()
+    public function testItGeneratesDotenvFileContentFromArray()
     {
         $dotEnvArray = [
             'PARAMETER_1' => 'value1',

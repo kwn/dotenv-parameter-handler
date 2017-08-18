@@ -1,15 +1,15 @@
 <?php
 
-namespace DotEnvParameterHandler;
+namespace DotenvParameterHandler;
 
 use PHPUnit\Framework\TestCase;
 
 class ConfigurationTest extends TestCase
 {
-    public function testItReturnsDotEnvSource()
+    public function testItReturnsDotenvSource()
     {
         $configuration = new Configuration([
-            'dot-env-parameter-handler' => [
+            'dotenv-parameter-handler' => [
                 'source' => '.env.example'
             ]
         ]);
@@ -17,17 +17,17 @@ class ConfigurationTest extends TestCase
         self::assertEquals(getcwd() . DIRECTORY_SEPARATOR . '.env.example', $configuration->getSource());
     }
 
-    public function testItHasDefaultValueForDotEnvSource()
+    public function testItHasDefaultValueForDotenvSource()
     {
         $configuration = new Configuration();
 
         self::assertEquals(getcwd() . DIRECTORY_SEPARATOR . '.env.dist', $configuration->getSource());
     }
 
-    public function testItReturnsDotEnvTarget()
+    public function testItReturnsDotenvTarget()
     {
         $configuration = new Configuration([
-            'dot-env-parameter-handler' => [
+            'dotenv-parameter-handler' => [
                 'target' => '.envdest'
             ]
         ]);
@@ -35,17 +35,17 @@ class ConfigurationTest extends TestCase
         self::assertEquals(getcwd() . DIRECTORY_SEPARATOR . '.envdest', $configuration->getTarget());
     }
 
-    public function testItHasDefaultValueForDotEnvTarget()
+    public function testItHasDefaultValueForDotenvTarget()
     {
         $configuration = new Configuration();
 
         self::assertEquals(getcwd() . DIRECTORY_SEPARATOR . '.env', $configuration->getTarget());
     }
 
-    public function testItReturnsDotEnvTargetFilename()
+    public function testItReturnsDotenvTargetFilename()
     {
         $configuration = new Configuration([
-            'dot-env-parameter-handler' => [
+            'dotenv-parameter-handler' => [
                 'target' => '.envdest'
             ]
         ]);
@@ -56,7 +56,7 @@ class ConfigurationTest extends TestCase
     public function testItReturnsStrategy()
     {
         $configuration = new Configuration([
-            'dot-env-parameter-handler' => [
+            'dotenv-parameter-handler' => [
                 'strategy' => 'input'
             ]
         ]);
@@ -64,7 +64,7 @@ class ConfigurationTest extends TestCase
         self::assertEquals('input', $configuration->getStrategy());
     }
 
-    public function testItHasDefaultValueForDotEnvStrategy()
+    public function testItHasDefaultValueForDotenvStrategy()
     {
         $configuration = new Configuration();
 

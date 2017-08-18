@@ -1,23 +1,23 @@
 <?php
 
-namespace DotEnvParameterHandler\DotEnvParser;
+namespace DotenvParameterHandler\DotenvParser;
 
-use DotEnvParameterHandler\Exception\DotEnvParserException;
+use DotenvParameterHandler\Exception\DotenvParserException;
 use PHPUnit\Framework\TestCase;
 
-class SymfonyDotEnvParserTest extends TestCase
+class SymfonyDotenvParserTest extends TestCase
 {
     /**
-     * @var SymfonyDotEnvParser
+     * @var SymfonyDotenvParser
      */
     private $dotEnvParser;
 
     public function setUp()
     {
-        $this->dotEnvParser = new SymfonyDotEnvParser();
+        $this->dotEnvParser = new SymfonyDotenvParser();
     }
 
-    public function testItParsesDotEnvFile()
+    public function testItParsesDotenvFile()
     {
         self::assertEquals([
             'DB_HOST' => '127.0.0.1',
@@ -30,14 +30,14 @@ class SymfonyDotEnvParserTest extends TestCase
 
     public function testItThrowsExceptionWhenFileDoesNotExist()
     {
-        $this->expectException(DotEnvParserException::class);
+        $this->expectException(DotenvParserException::class);
 
         $this->dotEnvParser->parse(__DIR__ . '/../../fixtures/non_existing_file.txt');
     }
 
     public function testItThrowsExceptionWhenFileHasSyntaxError()
     {
-        $this->expectException(DotEnvParserException::class);
+        $this->expectException(DotenvParserException::class);
 
         $this->dotEnvParser->parse(__DIR__ . '/../../fixtures/.env2.dist');
     }

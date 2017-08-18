@@ -1,10 +1,10 @@
 <?php
 
-namespace DotEnvParameterHandler\DotEnvGenerator;
+namespace DotenvParameterHandler\DotenvGenerator;
 
-use DotEnvParameterHandler\DotEnvGenerator;
+use DotenvParameterHandler\DotenvGenerator;
 
-class CopyPasteDotEnvGenerator implements DotEnvGenerator
+class CopyPasteDotenvGenerator implements DotenvGenerator
 {
     /**
      * @param array $dotEnv

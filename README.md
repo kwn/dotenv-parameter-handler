@@ -1,4 +1,4 @@
-# DotEnv parameter handler
+# Dotenv parameter handler
 
 [![Travis](https://travis-ci.org/kwn/dot-env-parameter-handler.svg?branch=master)](https://travis-ci.org/kwn/dot-env-parameter-handler)
 [![Code Climate](https://codeclimate.com/github/kwn/dot-env-parameter-handler/badges/gpa.svg)](https://codeclimate.com/github/kwn/dot-env-parameter-handler)

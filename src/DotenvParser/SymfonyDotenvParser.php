@@ -1,13 +1,13 @@
 <?php
 
-namespace DotEnvParameterHandler\DotEnvParser;
+namespace DotenvParameterHandler\DotenvParser;
 
-use DotEnvParameterHandler\DotEnvParser;
-use DotEnvParameterHandler\Exception\DotEnvParserException;
+use DotenvParameterHandler\DotenvParser;
+use DotenvParameterHandler\Exception\DotenvParserException;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\Dotenv\Exception\FormatException;
 
-class SymfonyDotEnvParser implements DotEnvParser
+class SymfonyDotenvParser implements DotenvParser
 {
     /**
      * @inheritdoc
@@ -15,7 +15,7 @@ class SymfonyDotEnvParser implements DotEnvParser
     public function parse($path)
     {
         if (!is_file($path)) {
-            throw new DotEnvParserException(sprintf('Cannot parse file. File "%s" does not exist.', $path));
+            throw new DotenvParserException(sprintf('Cannot parse file. File "%s" does not exist.', $path));
         }
 
         $content = file_get_contents($path);
@@ -23,7 +23,7 @@ class SymfonyDotEnvParser implements DotEnvParser
         try {
             $dotEnv = (new Dotenv())->parse($content, $path);
         } catch (FormatException $e) {
-            throw new DotEnvParserException($e->getMessage(), $e->getCode(), $e);
+            throw new DotenvParserException($e->getMessage(), $e->getCode(), $e);
         }
 
         return $dotEnv;

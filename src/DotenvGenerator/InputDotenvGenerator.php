@@ -1,11 +1,11 @@
 <?php
 
-namespace DotEnvParameterHandler\DotEnvGenerator;
+namespace DotenvParameterHandler\DotenvGenerator;
 
 use Composer\IO\IOInterface;
-use DotEnvParameterHandler\DotEnvGenerator;
+use DotenvParameterHandler\DotenvGenerator;
 
-class InputDotEnvGenerator implements DotEnvGenerator
+class InputDotenvGenerator implements DotenvGenerator
 {
     /**
      * @var IOInterface

@@ -1,5 +1,5 @@
 {
-    "name": "kwn/dot-env-parameter-handler",
+    "name": "kwn/dotenv-parameter-handler",
     "description": "Composer script building .env file from .env.dist",
     "type": "composer-plugin",
     "license": "MIT",
@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "DotEnvParameterHandler\\": "src"
+            "DotenvParameterHandler\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DotEnvParameterHandler\\": "tests/unit"
+            "DotenvParameterHandler\\": "tests/unit"
         }
     }
 }

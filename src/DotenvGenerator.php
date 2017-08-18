@@ -1,8 +1,8 @@
 <?php
 
-namespace DotEnvParameterHandler;
+namespace DotenvParameterHandler;
 
-interface DotEnvGenerator
+interface DotenvGenerator
 {
     /**
      * @param array $dotEnv

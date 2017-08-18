@@ -1,11 +1,11 @@
 <?php
 
-namespace DotEnvParameterHandler;
+namespace DotenvParameterHandler;
 
 use Composer\Script\Event;
-use DotEnvParameterHandler\DotEnvParser\SymfonyDotEnvParser;
-use DotEnvParameterHandler\Exception\DotEnvParserException;
-use DotEnvParameterHandler\Exception\InvalidConfigurationException;
+use DotenvParameterHandler\DotenvParser\SymfonyDotenvParser;
+use DotenvParameterHandler\Exception\DotenvParserException;
+use DotenvParameterHandler\Exception\InvalidConfigurationException;
 
 class ScriptHandler
 {
@@ -13,7 +13,7 @@ class ScriptHandler
      * @param Event $event
      *
      * @throws InvalidConfigurationException
-     * @throws DotEnvParserException
+     * @throws DotenvParserException
      */
     public static function buildParameters(Event $event)
     {
@@ -21,8 +21,8 @@ class ScriptHandler
         $io = $event->getIO();
 
         $configuration = new Configuration($extras);
-        $parser = new SymfonyDotEnvParser();
-        $generatorFactory = new DotEnvGeneratorFactory($io);
+        $parser = new SymfonyDotenvParser();
+        $generatorFactory = new DotenvGeneratorFactory($io);
         $generator = $generatorFactory->create($configuration->getStrategy());
 
         $io->write(sprintf('<info>Creating "%s" file...</info>', $configuration->getTargetFilename()));

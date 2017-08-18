@@ -1,6 +1,6 @@
 <?php
 
-namespace DotEnvParameterHandler\Exception;
+namespace DotenvParameterHandler\Exception;
 
 class InvalidConfigurationException extends \RuntimeException
 {

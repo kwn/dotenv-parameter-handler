@@ -1,13 +1,13 @@
 <?php
 
-namespace DotEnvParameterHandler;
+namespace DotenvParameterHandler;
 
 use Composer\IO\IOInterface;
-use DotEnvParameterHandler\DotEnvGenerator\CopyPasteDotEnvGenerator;
-use DotEnvParameterHandler\DotEnvGenerator\InputDotEnvGenerator;
-use DotEnvParameterHandler\Exception\InvalidConfigurationException;
+use DotenvParameterHandler\DotenvGenerator\CopyPasteDotenvGenerator;
+use DotenvParameterHandler\DotenvGenerator\InputDotenvGenerator;
+use DotenvParameterHandler\Exception\InvalidConfigurationException;
 
-class DotEnvGeneratorFactory
+class DotenvGeneratorFactory
 {
     /**
      * @var IOInterface
@@ -18,7 +18,7 @@ class DotEnvGeneratorFactory
      * @var array
      */
     private $availableStrategies = [
-        Configuration::STRATEGY_COPYPASTE,
+        Configuration::STRATEGY_COPY,
         Configuration::STRATEGY_INPUT
     ];
 
@@ -33,17 +33,17 @@ class DotEnvGeneratorFactory
     /**
      * @param string $strategy
      *
-     * @return DotEnvGenerator
+     * @return DotenvGenerator
      * @throws InvalidConfigurationException
      */
     public function create($strategy)
     {
         switch ($strategy) {
-            case Configuration::STRATEGY_COPYPASTE:
-                return new CopyPasteDotEnvGenerator();
+            case Configuration::STRATEGY_COPY:
+                return new CopyPasteDotenvGenerator();
                 break;
             case Configuration::STRATEGY_INPUT:
-                return new InputDotEnvGenerator($this->io);
+                return new InputDotenvGenerator($this->io);
                 break;
             default:
                 throw new InvalidConfigurationException(sprintf(

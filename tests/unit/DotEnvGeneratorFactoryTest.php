@@ -1,17 +1,17 @@
 <?php
 
-namespace DotEnvParameterHandler;
+namespace DotenvParameterHandler;
 
 use Composer\IO\IOInterface;
-use DotEnvParameterHandler\DotEnvGenerator\CopyPasteDotEnvGenerator;
-use DotEnvParameterHandler\DotEnvGenerator\InputDotEnvGenerator;
-use DotEnvParameterHandler\Exception\InvalidConfigurationException;
+use DotenvParameterHandler\DotenvGenerator\CopyPasteDotenvGenerator;
+use DotenvParameterHandler\DotenvGenerator\InputDotenvGenerator;
+use DotenvParameterHandler\Exception\InvalidConfigurationException;
 use PHPUnit\Framework\TestCase;
 
-class DotEnvGeneratorFactoryTest extends TestCase
+class DotenvGeneratorFactoryTest extends TestCase
 {
     /**
-     * @var DotEnvGeneratorFactory
+     * @var DotenvGeneratorFactory
      */
     private $dotEnvGeneratorFactory;
 
@@ -19,7 +19,7 @@ class DotEnvGeneratorFactoryTest extends TestCase
     {
         $io = \Mockery::mock(IOInterface::class);
 
-        $this->dotEnvGeneratorFactory = new DotEnvGeneratorFactory($io);
+        $this->dotEnvGeneratorFactory = new DotenvGeneratorFactory($io);
     }
 
     public function testItThrowsExceptionWhenStrategyDoesNotExist()
@@ -29,17 +29,17 @@ class DotEnvGeneratorFactoryTest extends TestCase
         $this->dotEnvGeneratorFactory->create('non-existing-strategy');
     }
 
-    public function testItCreatesCopyPasteDotEnvGenerator()
+    public function testItCreatesCopyPasteDotenvGenerator()
     {
-        $generator = $this->dotEnvGeneratorFactory->create(Configuration::STRATEGY_COPYPASTE);
+        $generator = $this->dotEnvGeneratorFactory->create(Configuration::STRATEGY_COPY);
 
-        self::assertInstanceOf(CopyPasteDotEnvGenerator::class, $generator);
+        self::assertInstanceOf(CopyPasteDotenvGenerator::class, $generator);
     }
 
-    public function testItCreatesInputDotEnvGenerator()
+    public function testItCreatesInputDotenvGenerator()
     {
         $generator = $this->dotEnvGeneratorFactory->create(Configuration::STRATEGY_INPUT);
 
-        self::assertInstanceOf(InputDotEnvGenerator::class, $generator);
+        self::assertInstanceOf(InputDotenvGenerator::class, $generator);
     }
 }
