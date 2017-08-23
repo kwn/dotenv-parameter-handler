@@ -6,10 +6,16 @@ use Composer\IO\IOInterface;
 use DotenvParameterHandler\DotenvGenerator\CopyPasteDotenvGenerator;
 use DotenvParameterHandler\DotenvGenerator\InputDotenvGenerator;
 use DotenvParameterHandler\Exception\InvalidConfigurationException;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 class DotenvGeneratorFactoryTest extends TestCase
 {
+    /**
+     * @var IOInterface|MockInterface
+     */
+    private $io;
+
     /**
      * @var DotenvGeneratorFactory
      */
@@ -17,9 +23,8 @@ class DotenvGeneratorFactoryTest extends TestCase
 
     public function setUp()
     {
-        $io = \Mockery::mock(IOInterface::class);
-
-        $this->dotEnvGeneratorFactory = new DotenvGeneratorFactory($io);
+        $this->io = \Mockery::mock(IOInterface::class);
+        $this->dotEnvGeneratorFactory = new DotenvGeneratorFactory($this->io);
     }
 
     public function testItThrowsExceptionWhenStrategyDoesNotExist()
@@ -41,5 +46,21 @@ class DotenvGeneratorFactoryTest extends TestCase
         $generator = $this->dotEnvGeneratorFactory->create(Configuration::STRATEGY_INPUT);
 
         self::assertInstanceOf(InputDotenvGenerator::class, $generator);
+    }
+
+    public function testItCreatesInputDotenvGeneratorWhenIoIsInteractive()
+    {
+        $this->io->shouldReceive('isInteractive')->andReturn(true);
+        $generator = $this->dotEnvGeneratorFactory->create(Configuration::STRATEGY_INPUT_OR_COPY);
+
+        self::assertInstanceOf(InputDotenvGenerator::class, $generator);
+    }
+
+    public function testItCreatesCopyPasteDotenvGeneratorWhenIoIsNotInteractive()
+    {
+        $this->io->shouldReceive('isInteractive')->andReturn(false);
+        $generator = $this->dotEnvGeneratorFactory->create(Configuration::STRATEGY_INPUT_OR_COPY);
+
+        self::assertInstanceOf(CopyPasteDotenvGenerator::class, $generator);
     }
 }

@@ -8,8 +8,9 @@ class Configuration
 {
     const DEFAULT_STRATEGY = self::STRATEGY_COPY;
 
-    const STRATEGY_COPY  = 'copy';
+    const STRATEGY_COPY = 'copy';
     const STRATEGY_INPUT = 'input';
+    const STRATEGY_INPUT_OR_COPY = 'input_or_copy';
 
     /**
      * @var string

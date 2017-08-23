@@ -19,7 +19,8 @@ class DotenvGeneratorFactory
      */
     private $availableStrategies = [
         Configuration::STRATEGY_COPY,
-        Configuration::STRATEGY_INPUT
+        Configuration::STRATEGY_INPUT,
+        Configuration::STRATEGY_INPUT_OR_COPY
     ];
 
     /**
@@ -44,6 +45,13 @@ class DotenvGeneratorFactory
                 break;
             case Configuration::STRATEGY_INPUT:
                 return new InputDotenvGenerator($this->io);
+                break;
+            case Configuration::STRATEGY_INPUT_OR_COPY:
+                if ($this->io->isInteractive()) {
+                    return new InputDotenvGenerator($this->io);
+                }
+
+                return new CopyPasteDotenvGenerator();
                 break;
             default:
                 throw new InvalidConfigurationException(sprintf(
