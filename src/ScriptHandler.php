@@ -25,11 +25,28 @@ class ScriptHandler
         $generatorFactory = new DotenvGeneratorFactory($io);
         $generator = $generatorFactory->create($configuration->getStrategy());
 
-        $io->write(sprintf('<info>Creating "%s" file...</info>', $configuration->getTargetFilename()));
+        $sourceData = $parser->parse($configuration->getSource());
+        $targetData = [];
+        $action = 'Creating';
+        $existingContent = '';
 
-        $data = $parser->parse($configuration->getSource());
-        $content = $generator->generate($data);
+        if (is_file($configuration->getTarget())) {
+            $action = 'Updating';
+            $existingContent = file_get_contents($configuration->getTarget());
+            $targetData = $parser->parse($configuration->getTarget());
+        }
 
-        file_put_contents($configuration->getTarget(), $content);
+        $io->write(sprintf('<info>%s "%s" file...</info>', $action, $configuration->getTargetFilename()));
+
+        $dataMissingInTarget = array_diff_key($sourceData, $targetData);
+
+        if (empty($dataMissingInTarget)) {
+            $io->write(sprintf('<info>%s file is up to date...</info>', $configuration->getTargetFilename()));
+            return;
+        }
+
+        $contentMissingInTarget = $generator->generate($dataMissingInTarget);
+
+        file_put_contents($configuration->getTarget(), $existingContent . $contentMissingInTarget);
     }
 }
