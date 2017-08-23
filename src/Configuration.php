@@ -6,7 +6,7 @@ use DotenvParameterHandler\Exception\InvalidConfigurationException;
 
 class Configuration
 {
-    const DEFAULT_STRATEGY = self::STRATEGY_COPY;
+    const DEFAULT_STRATEGY = self::STRATEGY_INPUT_OR_COPY;
 
     const STRATEGY_COPY = 'copy';
     const STRATEGY_INPUT = 'input';
